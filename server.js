@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "saiprasad2523@gmail.com", // Your Gmail ID
+    user: "shitzyofficial@gmail.com", // Your Gmail ID
     pass: "fbki ndks mecj acol", // Gmail App Password
   },
 });
@@ -51,7 +51,7 @@ app.post("/send-email", async (req, res) => {
 
     // Send Email using Nodemailer
     const mailOptions = {
-      from: "saiprasad2523@gmail.com", // Your Gmail ID
+      from: "shitzyofficial@gmail.com", // Your Gmail ID
       to: email,
       subject: "Welcome to Our Newsletter!",
       html: htmlContent,
