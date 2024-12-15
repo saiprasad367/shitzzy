@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shitzzy - A coming soon website with countdown timer, email subscription, and smooth animations. Stay tuned for our launch!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <title>Shitzzy</title>
+  <style>
+    /* Global Reset and Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: black;
+      backdrop-filter: blur(5px);
+    }
+
+    .website-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+    text-transform: lowercase;
+
+      font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+    }
+
+    .notify-btn {
+      padding: 10px 20px;
+      background-color:white;
+      color:black;
+      border: none;
+      border-radius: 13px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .notify-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 0.15em solid #f1f1f1;
+      font-family: sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color:white;
+      text-transform: uppercase;
+      animation: fadeInTyping 3s steps(30) 1s forwards, blink 0.6s step-end infinite;
+      letter-spacing: 2px;
+      opacity: 0; /* Start invisible */
+    }
+    
+    @keyframes fadeInTyping {
+      0% {
+        width: 0;
+        opacity: 0; /* Start invisible */
+      }
+      10% {
+        opacity: 1; /* Start appearing */
+      }
+      100% {
+        width: 100%;
+        opacity: 1; /* Fully visible */
+      }
+    }
+    
+    @keyframes blink {
+      from {
+        border-color: transparent;
+      }
+      to {
+        border-color: #f1f1f1;
+      }
+    }
+
+    .sub-text {
+      font-family: sans-serif;
+      font-size: 2rem;
+      color: #ddd;
+      margin-top: 30px;
+      transform: translateX(-1500px);
+      opacity: 0;
+
+      font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+    }
+
+    @keyframes carBrake {
+      0% {
+        transform: translateX(-1500px);
+        opacity: 0;
+      }
+      80% {
+        transform: translateX(10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .timer {
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      visibility: hidden;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 3.5s;
+    }
+
+    .time-box {
+      background: #fff;
+      color: #000;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .time-box small {
+      font-size: 0.9rem;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .time-box:hover {
+      background-color: #e50914;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    .email-section {
+      opacity: 0;
+      visibility: hidden;
+      animation: fadeInSection 1s ease-in forwards;
+      margin-top: 50px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+    }
+
+    .email-input {
+      padding: 12px 20px;
+      border: none;
+      border-bottom: 2px solid #fff;
+      background-color: black;
+      width: 300px;
+      font-size: 1rem;
+      color: white;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      
+    }
+
+    .email-input:focus {
+      outline: none;
+      border-color:aqua;
+      background-color: black;
+      transform: scale(1.05);
+      border-radius: 15px;
+    }
+
+    .email-input::placeholder {
+      color: #fff;
+      opacity: 0.7;
+      background-color: black;
+    }
+
+    .notify-btn-2 {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: white;
+      color:black;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0px 0px 15px 15px;
+    }
+
+    .notify-btn-2:hover {
+
+
+
+      background-color: aqua;
+      color: black;
+
+
+    }
+
+    @keyframes fadeInSection {
+      from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+
+    footer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      background-color: #555;
+      color: white;
+    }
+    footer p{
+      margin: 15px;
+      padding: 5px;
+      font-size: 18px;
+      font-family: sans-serif;
+
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="website-name">Shitzzy</div>
+    <button onclick="window.location.href='#email-section'" class="notify-btn">Explore..</button>
+  </nav>
+
+  <section class="hero">
+    <div class="typing">Coming Soon...</div>
+    <p class="sub-text">Under Construction</p>
+    <br>
+    <div class="timer">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Days</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Hrs</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Min</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Sec</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="email-section" class="email-section">
+    <input type="email" class="email-input" id="email" placeholder="Enter your email" />
+    <button class="notify-btn-2" style="background:white; font-family: sans-serif;" onclick="sendEmail()">Notify Me</button>
+  </section>
+  
+<br>
+<br>
+  <footer>
+    <p>&copy; 2024 Shitzzy. All Rights Reserved </p>
+    <br>
+    <br>
+    
+  </footer>
+
+  <script>
+    // Timer Functionality
+    const countdown = () => {
+      const targetDate = new Date("2024-12-25T00:00:00").getTime();
+      const now = Date.now();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.querySelector('.timer').textContent = 'Event Started!';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    };
+
+    setInterval(countdown, 1000);
+
+    // Animation Controls
+    document.querySelector('.typing').addEventListener('animationend', () => {
+      document.querySelector('.sub-text').style.animation = 'carBrake 1.5s forwards';
+    });
+
+    window.addEventListener('scroll', () => {
+      const emailSection = document.querySelector('.email-section');
+      const rect = emailSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight) {
+        emailSection.style.visibility = 'visible';
+        emailSection.style.opacity = '1';
+      }
+    });
+
+    // Email Submission (Dummy functionality)
+    async function sendEmail() {
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value.trim();
+      if (!email) {
+        alert("Please enter a valid email address!");
+        return;
+      }
+      try {
+        const response = await fetch("/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        if (response.ok) {
+          alert("Email sent successfully!");
+          emailInput.value = "";
+        } else {
+          const result = await response.json();
+          alert(`Failed to send email: ${result.message}`);
+        }
+      } catch (error) {
+        console.error(error);
+        alert("An error occurred. Please try again later.");
+      }
+    }
+  </script>
+
+  <script>
+    document.getElementById("emailForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = e.target.email.value;
+
+      const response = await fetch("/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+      alert(result.message);
+    });
+  </script>
+</body>
+</html>
